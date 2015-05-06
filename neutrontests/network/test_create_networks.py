@@ -21,9 +21,10 @@ class TestCreateNetworks(common.TestBaseClass):
 		self.logger.info("Created network:{0}".format(self.network_name))
 	
 	def tearDown(self):
-		network = {'name': self.network_name}
-		self.neutron.create_network({'network':network})
-		self.logger.info("Deleted network:{0}".format(self.network_name))
+		networks = self.neutron.list_networks(name=self.network_name)
+		if networks:
+			self.neutron.delete_network(networks['networks'][0]['id'])
+			self.logger.info("Deleted network:{0}".format(self.network_name))
 
 	#def test_list_networks(self):
 	#	print self.neutron.list_networks(name=self.network_name)

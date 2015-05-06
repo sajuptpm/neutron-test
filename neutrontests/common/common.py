@@ -3,6 +3,7 @@ import sys
 import logging
 import unittest
 from neutronclient.neutron import client
+from keystoneclient.v2_0 import client as kclient
 
 class TestBaseClass(unittest.TestCase):
         def setUp(self):
@@ -18,6 +19,11 @@ class TestBaseClass(unittest.TestCase):
 
                 self.logger.info("Connected to neutron client as user:{user}, tenant:{tenant}"
                                         .format(user=self.username, tenant=self.tenant_name) )
+
+                self.keystone = kclient.Client(auth_url=self.auth_url, username=self.username,
+					password=self.password, tenant_name=self.tenant_name)
+
+		self.current_project_id = self.keystone.project_id
 
                 self._init()
 
