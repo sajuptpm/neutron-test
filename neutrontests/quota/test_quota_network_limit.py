@@ -21,7 +21,7 @@ class TestQuotaNetworkLimit(quota_base.TestQuotaBase):
 			network = {'name': network_name, 'admin_state_up': True}
 			network_info = self.neutron.create_network({'network':network})
 			network_id = network_info['network']['id']
-			self.logger.info("Created network:{0}".format(network_id))
+			self.logger.info("Created Network:{0}".format(network_id))
 			self.network_ids.append(network_id)
 			if not self.quota_limit:
 				break
@@ -30,7 +30,7 @@ class TestQuotaNetworkLimit(quota_base.TestQuotaBase):
 	def tearDown(self):
 		for network_id in self.network_ids:
 			self.neutron.delete_network(network_id)
-			self.logger.info("Deleted network:{0}".format(network_id))
+			self.logger.info("Deleted Network:{0}".format(network_id))
 
 
 if __name__ == '__main__':
