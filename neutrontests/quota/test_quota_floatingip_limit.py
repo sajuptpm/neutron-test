@@ -21,7 +21,7 @@ class TestQuotaNetworkLimit(quota_base.TestQuotaBase):
 		while True:
 			floatingip = {"floating_network_id": self.floating_nw_id}
 			fip_info = self.neutron.create_floatingip({'floatingip':floatingip})
-			fip_id = fip_info['floating']['id']
+			fip_id = fip_info['floatingip']['id']
 			self.logger.info("Created Floating IP:{0}".format(fip_id))
 			self.fip_ids.append(fip_id)
 			if not self.quota_limit:
