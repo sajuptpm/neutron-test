@@ -1,0 +1,13 @@
+
+1)
+Create a VM in selected subnet using IP in that subnet 
+#nova boot --flavor 1 --image e489afe7-add9-414e-9349-bfa737f02b73 --security-groups 989a351c-9448-4b52-a14f-3eb49ccb33ed --nic net-id=aeaf3661-cded-408f-9210-6917a6a60b87,v4-fixed-ip=10.2.2.10 sa-vm1
+
+2)
+Create a VM in selected Host
+* Find id of host
+#nova hypervisor-list
+*Run "nova boot" command with "--hint same_host=id_of_host"
+#nova boot --flavor 1 --image e489afe7-add9-414e-9349-bfa737f02b73 --security-groups 989a351c-9448-4b52-a14f-3eb49ccb33ed --nic net-id=aeaf3661-cded-408f-9210-6917a6a60b87,v4-fixed-ip=10.2.2.11 --hint same_host=2 sa-vm2
+
+
